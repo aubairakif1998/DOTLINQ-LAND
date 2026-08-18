@@ -15,7 +15,16 @@ export const metadata: Metadata = {
     description: SEO.ogDescription,
     url: SITE_URL,
     type: 'website',
-    images: [SEO.ogImage],
+    images: [
+      {
+        url: SEO.ogImage.url,
+        secureUrl: SEO.ogImage.secureUrl,
+        width: SEO.ogImage.width,
+        height: SEO.ogImage.height,
+        alt: SEO.ogImage.alt,
+        type: SEO.ogImage.type,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

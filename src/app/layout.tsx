@@ -65,7 +65,16 @@ export const metadata: Metadata = {
     siteName: BRAND.name,
     title: SEO.ogTitle,
     description: SEO.ogDescription,
-    images: [SEO.ogImage],
+    images: [
+      {
+        url: SEO.ogImage.url,
+        secureUrl: SEO.ogImage.secureUrl,
+        width: SEO.ogImage.width,
+        height: SEO.ogImage.height,
+        alt: SEO.ogImage.alt,
+        type: SEO.ogImage.type,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -84,6 +93,8 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
   other: {
     'theme-color': '#0A1628',
+    // Helps older scrapers that ignore og:image
+    'image': SEO.ogImage.url,
   },
 };
 

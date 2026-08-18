@@ -26,7 +26,7 @@ const capabilitySummary =
   'Connect secure pathways, map in Studio, run inbound and outbound Process Flows, validate before bad data lands, and monitor the full EDI lifecycle.';
 
 /** Always absolute HTTPS in production builds — LinkedIn rejects localhost. */
-const OG_IMAGE_ABS = `${SITE_URL}/og.png`;
+const OG_IMAGE_ABS = `${SITE_URL}/brand/linkedin-card.png`;
 
 export const SEO = {
   siteName: BRAND.name,
@@ -44,6 +44,7 @@ export const SEO = {
     'Most EDI setups are expensive duct tape. DotLinQ unifies pathways, Studio mapping, Process Flows, validation, and lifecycle monitoring — for logistics, retail, and suppliers who treat EDI as commercial infrastructure.',
   ogImage: {
     url: OG_IMAGE_ABS,
+    secureUrl: OG_IMAGE_ABS,
     width: 1200,
     height: 630,
     alt: 'DotLinQ logo — Connect Every Dot. Automate Every Flow.',
