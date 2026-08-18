@@ -21,7 +21,7 @@ export default async function AubairAdminPage() {
         title="Aubair waitlist"
         logoutApi="/api/aubairadmin/logout"
         loginPath="/aubairadmin"
-        csvPath="/api/admin/waitlist?format=csv"
+        csvPath="/api/aubairadmin/waitlist?format=csv"
       />
     );
   } catch (error) {

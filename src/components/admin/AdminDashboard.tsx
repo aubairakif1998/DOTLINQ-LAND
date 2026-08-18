@@ -20,9 +20,9 @@ type AdminDashboardProps = {
 export function AdminDashboard({
   entries,
   stats,
-  logoutApi = '/api/admin/logout',
-  loginPath = '/admin/login',
-  csvPath = '/api/admin/waitlist?format=csv',
+  logoutApi = '/api/aubairadmin/logout',
+  loginPath = '/aubairadmin',
+  csvPath = '/api/aubairadmin/waitlist?format=csv',
   title = 'Waitlist insights',
 }: AdminDashboardProps) {
   const router = useRouter();

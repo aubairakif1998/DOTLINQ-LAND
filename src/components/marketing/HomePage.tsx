@@ -37,6 +37,7 @@ import {
 } from "@/components/marketing/Motion";
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { WaitlistDialog } from "@/components/waitlist/WaitlistDialog";
+import { Waitlist1 } from "@/components/waitlist/Waitlist1";
 import { LaunchCountdown } from "@/components/waitlist/LaunchCountdown";
 import { BackgroundBeams } from "@/components/ui/aceternity/BackgroundBeams";
 import { BlogSection } from "@/components/ui/aceternity/BlogSection";
@@ -194,7 +195,8 @@ export function MarketingHomePage() {
 
   useEffect(() => {
     const openFromHash = () => {
-      if (window.location.hash === "#waitlist" || window.location.hash === "#contact") {
+      // #waitlist scrolls to Waitlist1; #contact still opens the dialog
+      if (window.location.hash === "#contact") {
         setWaitlistOpen(true);
       }
     };
@@ -675,38 +677,8 @@ export function MarketingHomePage() {
           </div>
         </section>
 
-        {/* Waitlist CTA — form opens in dialog */}
-        <section
-          id="waitlist"
-          className="scroll-mt-24 relative overflow-hidden border-b border-white/10 dl-hero-dark dl-section"
-        >
-          <BackgroundBeams variant="dark" className="opacity-70" />
-          <div className="dl-container relative text-center">
-            <Reveal className="mx-auto flex max-w-xl flex-col items-center">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">
-                Early access · {BRAND.launchDate}
-              </p>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Join the waitlist
-              </h2>
-              <p className="mt-4 text-[16px] leading-relaxed text-slate-300">
-                Request early access before DotLinQ launches. We&apos;ll follow up as invitations open.
-              </p>
-              <PrimaryCta onClick={openWaitlist} className="mt-8">
-                Join the waitlist
-              </PrimaryCta>
-              <p className="mt-5 text-[13px] text-slate-400">
-                Or email{" "}
-                <a
-                  href={`mailto:${BRAND.email}`}
-                  className="font-medium text-sky-300 underline-offset-2 hover:underline"
-                >
-                  {BRAND.email}
-                </a>
-              </p>
-            </Reveal>
-          </div>
-        </section>
+        {/* Shadcnblocks Waitlist 1 — inline email signup */}
+        <Waitlist1 className="scroll-mt-24 border-b border-white/10" />
       </main>
 
       <footer className="relative overflow-hidden bg-[#040914] text-white">

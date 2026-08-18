@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isAdminRequest } from '@/lib/admin-auth';
+import { isAubairAdminRequest } from '@/lib/admin-auth';
 import { listWaitlist, toCsv } from '@/lib/waitlist';
 
 export const runtime = 'nodejs';
 
 export async function GET(request: NextRequest) {
-  if (!(await isAdminRequest())) {
+  if (!(await isAubairAdminRequest())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ entries });
   } catch (error) {
-    console.error('[api/admin/waitlist]', error);
+    console.error('[api/aubairadmin/waitlist]', error);
     return NextResponse.json(
       {
         error: error instanceof Error ? error.message : 'Unable to load waitlist.',
