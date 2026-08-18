@@ -74,7 +74,6 @@ export function ProductShowcase() {
         <Shot
           src={PRODUCT_SHOTS.mappingStudio.src}
           alt={PRODUCT_SHOTS.mappingStudio.alt}
-          priority
         />
       ),
     },

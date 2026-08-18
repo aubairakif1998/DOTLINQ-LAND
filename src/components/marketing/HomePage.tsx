@@ -212,7 +212,10 @@ export function MarketingHomePage() {
 
       <main>
         {/* Hero — cinematic dark, Aceternity flash */}
-        <section className="relative overflow-hidden border-b border-white/10 dl-hero-dark">
+        <section
+          className="relative overflow-hidden border-b border-white/10 dl-hero-dark"
+          aria-labelledby="hero-heading"
+        >
           <BackgroundBeams variant="dark" />
           <div className="dl-container relative flex min-h-[min(90vh,860px)] flex-col items-center justify-center py-24 text-center sm:py-28 lg:py-32">
             <motion.div
@@ -241,16 +244,18 @@ export function MarketingHomePage() {
               <motion.p
                 variants={fadeUp}
                 className="mt-5 font-bold tracking-tight"
+                aria-label={BRAND.name}
               >
-                {/* <span className="bg-gradient-to-b from-white to-slate-300 bg-clip-text text-5xl text-transparent sm:text-6xl lg:text-7xl">
+                <span className="bg-gradient-to-b from-white to-slate-300 bg-clip-text text-5xl text-transparent sm:text-6xl lg:text-7xl">
                   {BRAND.nameParts.prefix}
                 </span>
                 <span className="bg-gradient-to-r from-sky-300 via-cyan-300 to-sky-400 bg-clip-text text-5xl text-transparent sm:text-6xl lg:text-7xl">
                   {BRAND.nameParts.linq}
-                </span> */}
+                </span>
               </motion.p>
 
               <motion.h1
+                id="hero-heading"
                 variants={fadeUp}
                 className="mt-6 max-w-3xl text-[1.85rem] font-bold leading-[1.12] tracking-tight text-white sm:text-[2.4rem] lg:text-[2.9rem]"
               >

@@ -146,6 +146,25 @@ export function ArticlePage({ article }: { article: Article }) {
         </Link>
 
         <header className="mx-auto mt-8 max-w-3xl">
+          <nav aria-label="Breadcrumb" className="mb-6 text-[13px] text-[#64748B]">
+            <ol className="flex flex-wrap items-center gap-1.5">
+              <li>
+                <Link href="/" className="hover:text-[var(--brand-ink)]">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href="/knowledge" className="hover:text-[var(--brand-ink)]">
+                  Knowledge Hub
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li className="truncate font-medium text-[var(--brand-ink)]" aria-current="page">
+                {article.title}
+              </li>
+            </ol>
+          </nav>
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex rounded-full border border-[color-mix(in_srgb,var(--brand-azure)_30%,transparent)] bg-[#E8F4FC] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-[var(--brand-azure-deep)]">
               {article.category}
@@ -159,7 +178,9 @@ export function ArticlePage({ article }: { article: Article }) {
           </h1>
           <p className="mt-4 text-[17px] leading-relaxed text-[#475569]">{article.excerpt}</p>
           <p className="mt-4 text-[13px] text-[#64748B]">
-            {article.date} · {article.readingMinutes} min read · DotLinQ Editorial
+            <time dateTime={article.dateIso}>{article.date}</time>
+            {' · '}
+            {article.readingMinutes} min read · DotLinQ Editorial
           </p>
         </header>
 

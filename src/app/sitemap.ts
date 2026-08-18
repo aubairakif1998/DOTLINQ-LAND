@@ -1,21 +1,26 @@
 import type { MetadataRoute } from 'next';
-import { getAllArticleSlugs } from '@/lib/articles';
+import { getAllArticleSlugs, getArticle } from '@/lib/articles';
 import { SITE_URL } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const articles = getAllArticleSlugs().map((slug) => ({
-    url: `${SITE_URL}/knowledge/${slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.75,
-  }));
 
+  const articles = getAllArticleSlugs().map((slug) => {
+    const article = getArticle(slug);
+    return {
+      url: `${SITE_URL}/knowledge/${slug}`,
+      lastModified: article?.dateIso ? new Date(article.dateIso) : now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    };
+  });
+
+  // Only indexable HTML documents — hash fragments are not separate URLs for crawlers
   return [
     {
       url: `${SITE_URL}/`,
       lastModified: now,
-      changeFrequency: 'daily',
+      changeFrequency: 'weekly',
       priority: 1,
     },
     {
@@ -25,41 +30,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     ...articles,
-    {
-      url: `${SITE_URL}/#products`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/#solutions`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/#industry`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/#about`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/#waitlist`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
-      url: `${SITE_URL}/#faq`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
   ];
 }

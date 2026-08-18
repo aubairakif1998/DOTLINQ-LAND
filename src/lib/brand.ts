@@ -45,7 +45,7 @@ export const BRAND = {
     'Faster partner go-live. Data aligned to your architecture. Exceptions visible before finance and operations feel them. A trading network you can run with executive confidence — not apologize for.',
 
   socialDescription:
-    'DotLinQ | The enterprise platform for partner networks — EDI-scoped B2B exchange with clarity.',
+    'Hot take: most EDI setups are expensive duct tape. DotLinQ (Dot-Link) turns fragmented partner exchange into one governed network — Connect, Studio, Process Flow, Validate, Monitor.',
 
   /** Commercial mandate: we provide this service within EDI scope. */
   serviceScope: {

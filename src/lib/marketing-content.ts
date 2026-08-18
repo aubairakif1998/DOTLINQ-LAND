@@ -310,6 +310,10 @@ export const KNOWLEDGE = [
 
 export const FAQ = [
   {
+    q: 'Why replace typical EDI duct-tape setups?',
+    a: 'Most EDI setups are just expensive duct tape — AS2 in one place, maps in another, monitoring somewhere else. Different tools, different teams, different truths about the same trading partner. DotLinQ (Dot-Link) is an EDI-scoped enterprise platform that turns fragmented partner exchange into one governed network: Connect secure pathways, map in Studio, run inbound and outbound Process Flows, validate before bad data lands, and monitor the full lifecycle.',
+  },
+  {
     q: 'What is DotLinQ’s service scope?',
     a: 'DotLinQ is designed and offered within the service scope of Electronic Data Interchange (EDI) and B2B partner document exchange. We connect trading partners, govern bidirectional exchange, shape formats for enterprise systems, validate commercial documents, and operate network visibility — under that EDI mandate.',
   },
@@ -327,7 +331,7 @@ export const FAQ = [
   },
   {
     q: 'Who is DotLinQ built for?',
-    a: 'Enterprises and operators running logistics, fulfillment, retail, and supplier ecosystems — where partner exchange is commercial infrastructure, not a side project.',
+    a: 'Logistics, retail, suppliers, and teams who treat EDI as commercial infrastructure — not a firefighting side project. Enterprises and operators running partner ecosystems where exchange is core to how the business runs.',
   },
   {
     q: 'What is DotLinQ Studio?',

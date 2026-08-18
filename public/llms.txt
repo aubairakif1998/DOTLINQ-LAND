@@ -2,25 +2,54 @@
 
 > Official site: https://www.dotlinq.com/
 
-DotLinQ (Dot-Link) is the enterprise platform for partner networks,
-offered within the service scope of Electronic Data Interchange (EDI)
-and B2B partner document exchange.
+DotLinQ (Dot-Link) is an EDI-scoped enterprise platform that turns
+fragmented partner exchange into one governed network.
 
-## Site map
+## Positioning
 
-- Products / Platform — Connect, Studio, Validate, Flow, Monitor
-- Solutions — Bidirectional exchange, partner onboarding at scale
-- Industry — Logistics, fulfillment, retail & supplier ecosystems
-- Knowledge Hub — https://www.dotlinq.com/knowledge
-- Articles:
-  - /knowledge/partner-exchange-product-surface
-  - /knowledge/in-product-intelligence-economics
-  - /knowledge/pathways-first-class-capability
-- Who We Are — Company mission and EDI service scope
-- Waitlist — Request early access: https://www.dotlinq.com/#waitlist
+Hot take: most EDI setups are just expensive duct tape.
+
+AS2 in one place. Maps in another. Monitoring… somewhere else.
+Different tools. Different teams. Different truths about the same trading partner.
+
+We're fixing that.
+
+## How DotLinQ helps in the EDI world
+
+- Connect partners on secure pathways (without burying trust in a side utility)
+- Map partner documents into your enterprise model in Studio — visually, versioned, reusable
+- Run inbound + outbound flows as one controlled Process Flow
+- Validate before bad data hits your systems (or your partners)
+- Monitor the full lifecycle — so ops sees the network, not a mystery folder
+
+Built for logistics, retail, suppliers, and teams who treat EDI as commercial
+infrastructure — not a firefighting side project.
+
+Product launch: October 30, 2026.
+
+## Primary pages
+
+- Home: https://www.dotlinq.com/
+- Knowledge Hub: https://www.dotlinq.com/knowledge
+- Waitlist / early access: https://www.dotlinq.com/#waitlist
+
+## Platform modules
+
+- Connect — secure partner pathways
+- Studio — native transformation intelligence
+- Validate — structural and business-rule checks
+- Flow — bidirectional Process Flow orchestration
+- Monitor — lifecycle visibility and partner performance
+
+## Knowledge articles
+
+- https://www.dotlinq.com/knowledge/partner-exchange-product-surface
+- https://www.dotlinq.com/knowledge/in-product-intelligence-economics
+- https://www.dotlinq.com/knowledge/pathways-first-class-capability
 
 ## Contact
 
 - Website: https://www.dotlinq.com/
 - Email: support@dotlinq.com
 - LinkedIn: https://www.linkedin.com/company/dotlinq/
+- Sitemap: https://www.dotlinq.com/sitemap.xml
