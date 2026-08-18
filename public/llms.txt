@@ -1,0 +1,26 @@
+# DotLinQ
+
+> Official site: https://www.dotlinq.com/
+
+DotLinQ (Dot-Link) is the enterprise platform for partner networks,
+offered within the service scope of Electronic Data Interchange (EDI)
+and B2B partner document exchange.
+
+## Site map
+
+- Products / Platform — Connect, Studio, Validate, Flow, Monitor
+- Solutions — Bidirectional exchange, partner onboarding at scale
+- Industry — Logistics, fulfillment, retail & supplier ecosystems
+- Knowledge Hub — https://www.dotlinq.com/knowledge
+- Articles:
+  - /knowledge/partner-exchange-product-surface
+  - /knowledge/in-product-intelligence-economics
+  - /knowledge/pathways-first-class-capability
+- Who We Are — Company mission and EDI service scope
+- Waitlist — Request early access: https://www.dotlinq.com/#waitlist
+
+## Contact
+
+- Website: https://www.dotlinq.com/
+- Email: support@dotlinq.com
+- LinkedIn: https://www.linkedin.com/company/dotlinq/
