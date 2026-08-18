@@ -246,12 +246,12 @@ export function MarketingHomePage() {
                 className="mt-5 font-bold tracking-tight"
                 aria-label={BRAND.name}
               >
-                <span className="bg-gradient-to-b from-white to-slate-300 bg-clip-text text-5xl text-transparent sm:text-6xl lg:text-7xl">
+                {/* <span className="bg-gradient-to-b from-white to-slate-300 bg-clip-text text-5xl text-transparent sm:text-6xl lg:text-7xl">
                   {BRAND.nameParts.prefix}
                 </span>
                 <span className="bg-gradient-to-r from-sky-300 via-cyan-300 to-sky-400 bg-clip-text text-5xl text-transparent sm:text-6xl lg:text-7xl">
                   {BRAND.nameParts.linq}
-                </span>
+                </span> */}
               </motion.p>
 
               <motion.h1
