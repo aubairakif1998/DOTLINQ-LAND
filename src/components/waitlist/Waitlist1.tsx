@@ -7,6 +7,8 @@ import { BackgroundLines } from '@/components/ui/background-lines';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { LaunchCountdown } from '@/components/waitlist/LaunchCountdown';
 import { joinWaitlist } from '@/lib/config';
 import { trackLandingEvent } from '@/lib/analytics';
@@ -15,23 +17,28 @@ import { cn } from '@/lib/utils';
 
 const AVATARS = ['AK', 'MR', 'JL', 'SC', 'DT', 'NP'] as const;
 
-function nameFromEmail(email: string) {
-  const local = email.split('@')[0]?.trim() || 'Operator';
-  return local
-    .replace(/[._+-]+/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase())
-    .slice(0, 80);
-}
+const emptyForm = {
+  name: '',
+  email: '',
+  company: '',
+  roleTitle: '',
+  notes: '',
+  website: '',
+};
 
 type Waitlist1Props = {
   className?: string;
 };
 
-/** Shadcnblocks Waitlist 1 pattern + launch countdown — dark Aceternity flash. */
+const fieldClass =
+  'h-11 rounded-xl border-white/15 bg-white/10 text-white shadow-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-400';
+
+const labelClass = 'text-[13px] font-medium text-slate-300';
+
+/** Shadcnblocks Waitlist 1 pattern + full signup fields — dark Aceternity flash. */
 export function Waitlist1({ className }: Waitlist1Props) {
   const [formOpen, setFormOpen] = useState(false);
-  const [email, setEmail] = useState('');
-  const [website, setWebsite] = useState('');
+  const [form, setForm] = useState(emptyForm);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<string | null>(null);
@@ -47,16 +54,18 @@ export function Waitlist1({ className }: Waitlist1Props) {
     setError(null);
     setSubmitting(true);
     try {
-      const trimmed = email.trim();
       const result = await joinWaitlist({
-        email: trimmed,
-        name: nameFromEmail(trimmed),
-        website,
+        name: form.name.trim(),
+        email: form.email.trim(),
+        company: form.company.trim() || undefined,
+        roleTitle: form.roleTitle.trim() || undefined,
+        notes: form.notes.trim() || undefined,
+        website: form.website,
         source: 'waitlist1',
       });
       void trackLandingEvent('waitlist_submit');
       setDone(result.message);
-      setEmail('');
+      setForm(emptyForm);
       setFormOpen(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong.');
@@ -104,43 +113,121 @@ export function Waitlist1({ className }: Waitlist1Props) {
                 openForm();
               }}
             >
-              Add another email
+              Add another signup
             </button>
           </div>
         ) : formOpen ? (
           <form
             onSubmit={onSubmit}
-            className="relative z-20 mt-10 flex w-full max-w-md flex-col gap-3 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full sm:border sm:border-white/15 sm:bg-white/10 sm:p-1.5 sm:shadow-[0_0_40px_-12px_rgba(56,189,248,0.45)] sm:backdrop-blur"
+            className="relative z-20 mt-10 w-full max-w-lg rounded-2xl border border-white/15 bg-white/10 p-5 shadow-[0_0_40px_-12px_rgba(56,189,248,0.35)] backdrop-blur sm:p-6"
           >
-            <label htmlFor="waitlist-email" className="sr-only">
-              Work email
-            </label>
-            <Input
-              id="waitlist-email"
-              type="email"
-              required
-              autoComplete="email"
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="h-12 w-full rounded-xl border-white/15 bg-white/10 text-white shadow-none ring-0 placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-400 sm:h-11 sm:rounded-full sm:border-none sm:bg-transparent sm:focus-visible:ring-0"
-              placeholder="Enter your work email"
-              disabled={submitting}
-            />
-            <input
-              type="text"
-              name="website"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden
-              className="absolute left-[-9999px] h-0 w-0 opacity-0"
-              value={website}
-              onChange={(e) => setWebsite(e.target.value)}
-            />
+            <div className="grid gap-3.5">
+              <div className="grid gap-1.5">
+                <Label htmlFor="waitlist1-name" className={labelClass}>
+                  Name
+                </Label>
+                <Input
+                  id="waitlist1-name"
+                  required
+                  autoComplete="name"
+                  autoFocus
+                  placeholder="Alex Morgan"
+                  value={form.name}
+                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                  disabled={submitting}
+                  className={fieldClass}
+                />
+              </div>
+
+              <div className="grid gap-1.5">
+                <Label htmlFor="waitlist1-email" className={labelClass}>
+                  Work email
+                </Label>
+                <Input
+                  id="waitlist1-email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  placeholder="alex@company.com"
+                  value={form.email}
+                  onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                  disabled={submitting}
+                  className={fieldClass}
+                />
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-1.5">
+                  <Label htmlFor="waitlist1-company" className={labelClass}>
+                    Company{' '}
+                    <span className="font-normal text-slate-500">(optional)</span>
+                  </Label>
+                  <Input
+                    id="waitlist1-company"
+                    autoComplete="organization"
+                    placeholder="Acme Logistics"
+                    value={form.company}
+                    onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
+                    disabled={submitting}
+                    className={fieldClass}
+                  />
+                </div>
+                <div className="grid gap-1.5">
+                  <Label htmlFor="waitlist1-role" className={labelClass}>
+                    Designation{' '}
+                    <span className="font-normal text-slate-500">(optional)</span>
+                  </Label>
+                  <Input
+                    id="waitlist1-role"
+                    placeholder="Integration lead"
+                    value={form.roleTitle}
+                    onChange={(e) => setForm((f) => ({ ...f, roleTitle: e.target.value }))}
+                    disabled={submitting}
+                    className={fieldClass}
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-1.5">
+                <Label htmlFor="waitlist1-notes" className={labelClass}>
+                  What are you looking to connect?{' '}
+                  <span className="font-normal text-slate-500">(optional)</span>
+                </Label>
+                <Textarea
+                  id="waitlist1-notes"
+                  placeholder="Partner networks, systems of record, APIs…"
+                  value={form.notes}
+                  onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
+                  disabled={submitting}
+                  className="min-h-[88px] rounded-xl border-white/15 bg-white/10 text-white shadow-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-400"
+                />
+              </div>
+
+              <div
+                className="absolute -left-[9999px] top-auto h-0 w-0 overflow-hidden"
+                aria-hidden
+              >
+                <Label htmlFor="waitlist1-website">Website</Label>
+                <Input
+                  id="waitlist1-website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.website}
+                  onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))}
+                />
+              </div>
+            </div>
+
+            {error ? (
+              <p className="mt-3 text-center text-sm text-red-400" role="alert">
+                {error}
+              </p>
+            ) : null}
+
             <Button
               type="submit"
               disabled={submitting}
-              className="h-12 shrink-0 rounded-xl bg-gradient-to-r from-sky-400 to-cyan-500 px-6 text-[14px] font-semibold text-slate-950 shadow-[0_8px_24px_-12px_rgba(56,189,248,0.9)] hover:brightness-110 sm:h-11 sm:rounded-full"
+              className="mt-5 h-12 w-full rounded-xl bg-gradient-to-r from-sky-400 to-cyan-500 text-[14px] font-semibold text-slate-950 shadow-[0_8px_24px_-12px_rgba(56,189,248,0.9)] hover:brightness-110"
             >
               {submitting ? (
                 <>
@@ -163,12 +250,6 @@ export function Waitlist1({ className }: Waitlist1Props) {
             </Button>
           </div>
         )}
-
-        {error ? (
-          <p className="relative z-20 mt-3 text-center text-sm text-red-400" role="alert">
-            {error}
-          </p>
-        ) : null}
 
         <div className="relative z-20 mt-10 flex flex-wrap items-center justify-center gap-3">
           <span className="inline-flex items-center -space-x-2.5">
