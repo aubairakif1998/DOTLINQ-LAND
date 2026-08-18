@@ -29,11 +29,18 @@ type Waitlist1Props = {
 
 /** Shadcnblocks Waitlist 1 pattern + launch countdown — dark Aceternity flash. */
 export function Waitlist1({ className }: Waitlist1Props) {
+  const [formOpen, setFormOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [website, setWebsite] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<string | null>(null);
+
+  const openForm = () => {
+    setError(null);
+    setFormOpen(true);
+    void trackLandingEvent('waitlist_open');
+  };
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -50,6 +57,7 @@ export function Waitlist1({ className }: Waitlist1Props) {
       void trackLandingEvent('waitlist_submit');
       setDone(result.message);
       setEmail('');
+      setFormOpen(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong.');
     } finally {
@@ -91,12 +99,15 @@ export function Waitlist1({ className }: Waitlist1Props) {
             <button
               type="button"
               className="text-[13px] font-medium text-sky-300 underline-offset-2 hover:underline"
-              onClick={() => setDone(null)}
+              onClick={() => {
+                setDone(null);
+                openForm();
+              }}
             >
               Add another email
             </button>
           </div>
-        ) : (
+        ) : formOpen ? (
           <form
             onSubmit={onSubmit}
             className="relative z-20 mt-10 flex w-full max-w-md flex-col gap-3 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full sm:border sm:border-white/15 sm:bg-white/10 sm:p-1.5 sm:shadow-[0_0_40px_-12px_rgba(56,189,248,0.45)] sm:backdrop-blur"
@@ -109,6 +120,7 @@ export function Waitlist1({ className }: Waitlist1Props) {
               type="email"
               required
               autoComplete="email"
+              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="h-12 w-full rounded-xl border-white/15 bg-white/10 text-white shadow-none ring-0 placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-400 sm:h-11 sm:rounded-full sm:border-none sm:bg-transparent sm:focus-visible:ring-0"
@@ -140,6 +152,16 @@ export function Waitlist1({ className }: Waitlist1Props) {
               )}
             </Button>
           </form>
+        ) : (
+          <div className="relative z-20 mt-10">
+            <Button
+              type="button"
+              onClick={openForm}
+              className="h-12 rounded-full bg-gradient-to-r from-sky-400 to-cyan-500 px-8 text-[14px] font-semibold text-slate-950 shadow-[0_8px_24px_-12px_rgba(56,189,248,0.9)] hover:brightness-110 sm:h-11"
+            >
+              Join the Waitlist
+            </Button>
+          </div>
         )}
 
         {error ? (
