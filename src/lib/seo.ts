@@ -25,6 +25,9 @@ export const EDI_SEO_PITCH = {
 const capabilitySummary =
   'Connect secure pathways, map in Studio, run inbound and outbound Process Flows, validate before bad data lands, and monitor the full EDI lifecycle.';
 
+/** Always absolute HTTPS in production builds — LinkedIn rejects localhost. */
+const OG_IMAGE_ABS = `${SITE_URL}/og.png`;
+
 export const SEO = {
   siteName: BRAND.name,
   titleDefault: 'DotLinQ | EDI Platform for Partner Networks (Dot-Link)',
@@ -40,10 +43,11 @@ export const SEO = {
   twitterDescription:
     'Most EDI setups are expensive duct tape. DotLinQ unifies pathways, Studio mapping, Process Flows, validation, and lifecycle monitoring — for logistics, retail, and suppliers who treat EDI as commercial infrastructure.',
   ogImage: {
-    url: '/brand/og-image.png?v=11',
+    url: OG_IMAGE_ABS,
     width: 1200,
     height: 630,
     alt: 'DotLinQ logo — Connect Every Dot. Automate Every Flow.',
+    type: 'image/png',
   },
   keywords: [
     'DotLinQ',
@@ -81,6 +85,7 @@ export const SEO = {
 
 export function absoluteUrl(path = '/') {
   if (!path || path === '/') return `${SITE_URL}/`;
+  if (/^https?:\/\//i.test(path)) return path;
   return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
@@ -97,10 +102,7 @@ export function organizationJsonLd() {
       width: 975,
       height: 328,
     },
-    image: [
-      absoluteUrl(SEO.ogImage.url.split('?')[0]!),
-      absoluteUrl('/brand/dotlinq-logo.png'),
-    ],
+    image: [SEO.ogImage.url, absoluteUrl('/brand/dotlinq-logo.png')],
     email: BRAND.email,
     description: SEO.longDescription,
     foundingDate: '2026',
